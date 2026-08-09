@@ -11,15 +11,17 @@
   <h1>SimpleSynthSeq</h1>
   <button id="playBtn" class="primary">▶ Afspil</button>
   <label class="bpm-field">BPM
-    <input id="bpmInput" type="number" min="40" max="300" value="120">
+    <input id="bpmInput" type="number" min="40" max="300" value="78">
   </label>
   <label class="bpm-field">Længde
-    <select id="lengthSelect">
-      <option value="16">16</option>
-      <option value="32">32</option>
-      <option value="64">64</option>
-    </select>
+    <select id="lengthSelect"></select>
   </label>
+  <label class="bpm-field">Swing
+    <input id="swingInput" type="number" min="0" max="75" step="5" value="0">%
+  </label>
+  <button id="addTrackBtn">＋ Tilføj spor</button>
+  <button id="importMidiBtn">📥 Importér MIDI</button>
+  <input type="file" id="midiFileInput" accept=".mid,.midi" style="display:none">
   <button id="clearBtn">Ryd mønster</button>
   <button id="resetBtn">Nulstil alt</button>
   <span class="spacer"></span>
@@ -37,7 +39,7 @@
 </main>
 
 <footer class="hint">
-  Klik på et sporsnavn for at redigere FM-synth-parametre. Skrue-parametre pr. knap (fx tone-override) kommer senere.
+  Klik på et sporsnavn for at redigere FM-synth-parametre, inkl. akkordmode, delay og reverb. Højreklik på et tændt trin for at redigere dets tone, akkord og groove-timing. Importér MIDI via knappen i toolbaren (prøv example.mid).
 </footer>
 
 <script src="app.js"></script>
