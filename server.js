@@ -13,4 +13,4 @@ const server = Bun.serve({
   development: true,
 });
 
-console.log(`SimpleSynthSeq kører på ${server.url}`);
+console.log(`SimpleSynthSeq running at ${server.url}`);

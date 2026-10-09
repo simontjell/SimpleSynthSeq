@@ -1,6 +1,6 @@
 # SimpleSynthSeq
 
-A small browser-based step sequencer with a built-in FM synth. The only dependency is [Bun](https://bun.sh) for serving the files; all audio is generated in the browser with the Web Audio API. The UI itself is in Danish.
+A small browser-based step sequencer with a built-in FM synth. The only dependency is [Bun](https://bun.sh) for serving the files; all audio is generated in the browser with the Web Audio API.
 
 ![SimpleSynthSeq playing a pattern while a track's synth panel is opened](docs/demo.gif)
 

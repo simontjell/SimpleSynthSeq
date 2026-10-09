@@ -54,7 +54,7 @@ const STORAGE_KEY = "simplesynthseq-state-v2";
 // ---------------------------------------------------------------------
 const PRESETS = {
   custom: {
-    label: "Brugerdefineret", color: "#7a8092",
+    label: "Custom", color: "#7a8092",
     carrierWave: "sine", modWave: "sine", freq: 220, modRatio: 1, modIndex: 0,
     modIndexDecay: 0, modIndexSustainRatio: 0.3,
     pitchEnvAmount: 0, pitchEnvDecay: 0.05,
@@ -87,7 +87,7 @@ const PRESETS = {
     reverbDecay: 1.8, reverbMix: 0.08,
   },
   hihatClosed: {
-    label: "Hi-hat lukket", color: "#3fb8b0",
+    label: "Hi-hat closed", color: "#3fb8b0",
     carrierWave: "square", modWave: "square", freq: 400, modRatio: 3.1, modIndex: 93,
     modIndexDecay: 0, modIndexSustainRatio: 0.3,
     pitchEnvAmount: -283, pitchEnvDecay: 0.02,
@@ -117,7 +117,7 @@ const PRESETS = {
     reverbDecay: 2.4, reverbMix: 0.3,
   },
   melody: {
-    label: "Melodi", color: "#4cc9f0",
+    label: "Melody", color: "#4cc9f0",
     // A warmer, more sustained lead voice (vs. the piano's percussive
     // pluck): triangle carrier for softer harmonics, a slower mod-index
     // settle, and a much higher sustain so single notes "sing" through.
@@ -131,7 +131,7 @@ const PRESETS = {
     reverbDecay: 2, reverbMix: 0.2,
   },
   hihatOpen: {
-    label: "Hi-hat åben", color: "#57d6cd",
+    label: "Hi-hat open", color: "#57d6cd",
     carrierWave: "square", modWave: "square", freq: 400, modRatio: 3.1, modIndex: 20,
     modIndexDecay: 0, modIndexSustainRatio: 0.3,
     pitchEnvAmount: 0, pitchEnvDecay: 0.02,
@@ -186,7 +186,7 @@ const PRESETS = {
     reverbDecay: 1.6, reverbMix: 0,
   },
   bass: {
-    label: "Bas", color: "#d62828",
+    label: "Bass", color: "#d62828",
     // Clean sine-ish 2-op FM sub with just a little growl and a tiny pitch
     // pluck on the attack (classic synth/fingered-bass character), kept dry
     // (no delay/reverb) so the low end stays tight instead of turning to mud.
@@ -204,7 +204,7 @@ const PRESETS = {
   // MIDI import always has a reasonable preset to fall back on — and they
   // work standalone too, just pick them from any track's Preset dropdown.
   bells: {
-    label: "Klokkespil", color: "#ffd23f",
+    label: "Bells", color: "#ffd23f",
     carrierWave: "sine", modWave: "sine", freq: 523.25, modRatio: 3.5, modIndex: 150,
     modIndexDecay: 0.3, modIndexSustainRatio: 0.1,
     pitchEnvAmount: 0, pitchEnvDecay: 0.02,
@@ -215,7 +215,7 @@ const PRESETS = {
     reverbDecay: 2, reverbMix: 0.2,
   },
   organ: {
-    label: "Orgel", color: "#8338ec",
+    label: "Organ", color: "#8338ec",
     carrierWave: "square", modWave: "sine", freq: 261.63, modRatio: 2, modIndex: 15,
     modIndexDecay: 0, modIndexSustainRatio: 0.3,
     pitchEnvAmount: 0, pitchEnvDecay: 0.02,
@@ -237,7 +237,7 @@ const PRESETS = {
     reverbDecay: 1.6, reverbMix: 0.05,
   },
   strings: {
-    label: "Strygere", color: "#3a86ff",
+    label: "Strings", color: "#3a86ff",
     carrierWave: "sawtooth", modWave: "sine", freq: 220, modRatio: 2, modIndex: 10,
     modIndexDecay: 0, modIndexSustainRatio: 0.3,
     pitchEnvAmount: 0, pitchEnvDecay: 0.02,
@@ -248,7 +248,7 @@ const PRESETS = {
     reverbDecay: 2.2, reverbMix: 0.22,
   },
   brass: {
-    label: "Messing", color: "#ff5400",
+    label: "Brass", color: "#ff5400",
     carrierWave: "sawtooth", modWave: "square", freq: 220, modRatio: 1, modIndex: 45,
     modIndexDecay: 0.08, modIndexSustainRatio: 0.5,
     pitchEnvAmount: 15, pitchEnvDecay: 0.04,
@@ -259,7 +259,7 @@ const PRESETS = {
     reverbDecay: 1.6, reverbMix: 0.1,
   },
   reed: {
-    label: "Rørblad", color: "#06d6a0",
+    label: "Reed", color: "#06d6a0",
     carrierWave: "square", modWave: "sine", freq: 220, modRatio: 1, modIndex: 20,
     modIndexDecay: 0.05, modIndexSustainRatio: 0.6,
     pitchEnvAmount: 0, pitchEnvDecay: 0.02,
@@ -270,7 +270,7 @@ const PRESETS = {
     reverbDecay: 1.7, reverbMix: 0.12,
   },
   flute: {
-    label: "Fløjte", color: "#90e0ef",
+    label: "Flute", color: "#90e0ef",
     carrierWave: "sine", modWave: "sine", freq: 523.25, modRatio: 2, modIndex: 3,
     modIndexDecay: 0, modIndexSustainRatio: 0.3,
     pitchEnvAmount: 0, pitchEnvDecay: 0.02,
@@ -316,7 +316,7 @@ const PRESETS = {
 };
 
 // Row-to-preset assignment for a brand-new state's initial tracks; tracks
-// added later via "Tilføj spor" default to "custom" (silent, index-named).
+// added later via "Add track" default to "custom" (silent, index-named).
 const DEFAULT_TRACK_PRESETS = ["kick", "snare", "hihatClosed", "piano", "melody", "bass"];
 
 // A ready-to-play starter pattern baked into a fresh/empty state, so the
@@ -398,7 +398,7 @@ function makeStep(on) {
 }
 
 // Pad `track.steps` with off steps if it's shorter than `length` — e.g. a
-// track added via "Tilføj spor" after a MIDI import grew the pattern well
+// track added via "Add track" after a MIDI import grew the pattern well
 // past the usual 64-step storage. Without this, rendering a too-short
 // track throws (track.steps[i] undefined) and silently aborts the whole
 // re-render, which looked like "nothing happens" when adding a track.
@@ -463,13 +463,13 @@ function loadState() {
     if (maxStoredSteps > STEP_COUNT) STEP_COUNT = maxStoredSteps;
     if (parsed.patternLength > STEP_COUNT) STEP_COUNT = parsed.patternLength;
     registerPatternLength(parsed.patternLength);
-    // Track count is user-adjustable (see "Tilføj spor" / "Fjern spor"), so
+    // Track count is user-adjustable (see "Add track" / "Remove track"), so
     // a saved track list is trusted at whatever length it has — no forced
     // reshaping here. STORAGE_KEY is bumped instead whenever the track/step
     // shape itself changes incompatibly.
     return parsed;
   } catch (e) {
-    console.warn("Kunne ikke indlæse gemt tilstand", e);
+    console.warn("Could not load saved state", e);
     return null;
   }
 }
@@ -481,7 +481,7 @@ function scheduleSave() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {
-      console.warn("Kunne ikke gemme tilstand", e);
+      console.warn("Could not save state", e);
     }
   }, 400);
 }
@@ -520,12 +520,12 @@ function parseMidi(buffer) {
     return value;
   }
 
-  if (str(4) !== "MThd") throw new Error("Ikke en gyldig MIDI-fil (mangler MThd-header).");
+  if (str(4) !== "MThd") throw new Error("Not a valid MIDI file (missing MThd header).");
   const headerLen = u32();
   u16(); // format — not needed: each MTrk is handled independently regardless of 0/1/2
   const numTracks = u16();
   const division = u16();
-  if (division & 0x8000) throw new Error("SMPTE-tidsbaserede MIDI-filer understøttes ikke.");
+  if (division & 0x8000) throw new Error("SMPTE time-based MIDI files are not supported.");
   const ticksPerQuarter = division;
   pos += headerLen - 6; // skip any nonstandard extra header bytes
 
@@ -533,7 +533,7 @@ function parseMidi(buffer) {
   const tracks = [];
 
   for (let t = 0; t < numTracks && pos < len; t++) {
-    if (str(4) !== "MTrk") throw new Error(`Ugyldigt spor-chunk (nr. ${t + 1}) i MIDI-filen.`);
+    if (str(4) !== "MTrk") throw new Error(`Invalid track chunk (no. ${t + 1}) in the MIDI file.`);
     const trackLen = u32();
     const trackEnd = pos + trackLen;
     let tick = 0;
@@ -625,15 +625,15 @@ function gmProgramToPreset(program) {
 // GM percussion key map (channel 10 note number) -> [preset key, name].
 // Anything not listed falls back to "custom" with a generic name.
 const GM_DRUM_MAP = {
-  35: ["kick", "Bastromme"], 36: ["kick", "Kick"],
+  35: ["kick", "Bass drum"], 36: ["kick", "Kick"],
   37: ["rimshot", "Rimshot"], 58: ["rimshot", "Vibraslap"],
-  38: ["snare", "Snare"], 40: ["snare", "Snare (el.)"],
+  38: ["snare", "Snare"], 40: ["snare", "Snare (electric)"],
   39: ["clap", "Clap"],
-  41: ["tom", "Tom (lav)"], 43: ["tom", "Tom (høj-lav)"], 45: ["tom", "Tom (lav-mid)"],
-  47: ["tom", "Tom (mid)"], 48: ["tom", "Tom (mid-høj)"], 50: ["tom", "Tom (høj)"],
-  42: ["hihatClosed", "Hi-hat lukket"], 44: ["hihatClosed", "Hi-hat (pedal)"], 54: ["hihatClosed", "Tamburin"],
-  46: ["hihatOpen", "Hi-hat åben"],
-  49: ["crash", "Crash"], 52: ["crash", "Crash (kinesisk)"], 55: ["crash", "Splash"], 57: ["crash", "Crash 2"],
+  41: ["tom", "Tom (low)"], 43: ["tom", "Tom (high-low)"], 45: ["tom", "Tom (low-mid)"],
+  47: ["tom", "Tom (mid)"], 48: ["tom", "Tom (mid-high)"], 50: ["tom", "Tom (high)"],
+  42: ["hihatClosed", "Hi-hat closed"], 44: ["hihatClosed", "Hi-hat (pedal)"], 54: ["hihatClosed", "Tambourine"],
+  46: ["hihatOpen", "Hi-hat open"],
+  49: ["crash", "Crash"], 52: ["crash", "Crash (chinese)"], 55: ["crash", "Splash"], 57: ["crash", "Crash 2"],
   51: ["ride", "Ride"], 53: ["ride", "Ride (bell)"], 59: ["ride", "Ride 2"],
   56: ["cowbell", "Cowbell"],
 };
@@ -1014,7 +1014,7 @@ function schedulerTick() {
     // Whatever went wrong, keep the transport itself alive — a scheduler
     // that quietly stops re-arming its own setTimeout is indistinguishable
     // from "no sound ever again" with nothing in the UI to explain why.
-    console.error("Scheduler-fejl", e);
+    console.error("Scheduler error", e);
   }
   schedulerTimer = setTimeout(schedulerTick, LOOKAHEAD_MS);
 }
@@ -1094,7 +1094,7 @@ function seekTo(stepIndex) {
 }
 
 function updatePlayButton() {
-  playBtn.textContent = playing ? "■ Stop" : "▶ Afspil";
+  playBtn.textContent = playing ? "■ Stop" : "▶ Play";
   playBtn.classList.toggle("playing", playing);
 }
 
@@ -1187,7 +1187,7 @@ function freqNoteFieldHtml(track) {
   const note = midiToNote(freqToMidi(track.params.freq));
   return `
     <div class="panel-field">
-      <label>Grundtone</label>
+      <label>Root note</label>
       <div class="panel-note-row">
         <select data-action="freq-note" data-track="${track.id}">${noteOptionsHtml(note.name)}</select>
         <input type="number" data-action="freq-octave" data-track="${track.id}" min="-1" max="9" step="1" value="${note.octave}">
@@ -1203,15 +1203,15 @@ function freqNoteFieldHtml(track) {
 // ---------------------------------------------------------------------
 
 const CHORD_TYPES = {
-  major: { label: "Dur", intervals: [0, 4, 7] },
-  minor: { label: "Mol", intervals: [0, 3, 7] },
+  major: { label: "Major", intervals: [0, 4, 7] },
+  minor: { label: "Minor", intervals: [0, 3, 7] },
   sus2: { label: "Sus2", intervals: [0, 2, 7] },
   sus4: { label: "Sus4", intervals: [0, 5, 7] },
-  major7: { label: "Dur7", intervals: [0, 4, 7, 11] },
-  minor7: { label: "Mol7", intervals: [0, 3, 7, 10] },
-  power: { label: "5'er (power chord)", intervals: [0, 7] },
-  octave: { label: "Oktav", intervals: [0, 12] },
-  custom: { label: "Brugerdefineret", intervals: null },
+  major7: { label: "Major 7", intervals: [0, 4, 7, 11] },
+  minor7: { label: "Minor 7", intervals: [0, 3, 7, 10] },
+  power: { label: "5th (power chord)", intervals: [0, 7] },
+  octave: { label: "Octave", intervals: [0, 12] },
+  custom: { label: "Custom", intervals: null },
 };
 
 function chordTypeOptionsHtml(selected) {
@@ -1223,10 +1223,10 @@ function chordTypeOptionsHtml(selected) {
 function chordFieldsHtml(track) {
   const toggle = `
     <div class="panel-field">
-      <label>Akkordmode</label>
+      <label>Chord mode</label>
       <label class="chord-toggle">
         <input type="checkbox" data-action="chord-toggle" data-track="${track.id}" ${track.chordMode ? "checked" : ""}>
-        Spil akkord på hvert tændt trin
+        Play a chord on every lit step
       </label>
     </div>`;
   if (!track.chordMode) return toggle;
@@ -1234,11 +1234,11 @@ function chordFieldsHtml(track) {
   return `
     ${toggle}
     <div class="panel-field">
-      <label>Akkordtype</label>
+      <label>Chord type</label>
       <select data-action="chord-type" data-track="${track.id}">${chordTypeOptionsHtml(track.chordType)}</select>
     </div>
     <div class="panel-field">
-      <label>Toner (halvtoner, kommasepareret)</label>
+      <label>Notes (semitones, comma-separated)</label>
       <input type="text" data-action="chord-intervals" data-track="${track.id}" value="${intervals.join(",")}">
     </div>`;
 }
@@ -1248,7 +1248,7 @@ function panelHtml(track) {
   return `
     <div class="panel-grid">
       <div class="panel-field">
-        <label>Navn</label>
+        <label>Name</label>
         <input type="text" data-action="name" data-track="${track.id}" value="${escapeHtml(track.name)}">
       </div>
       <div class="panel-field">
@@ -1256,33 +1256,33 @@ function panelHtml(track) {
         <select data-action="preset" data-track="${track.id}">${presetOptionsHtml(track.preset)}</select>
       </div>
       ${chordFieldsHtml(track)}
-      ${fieldHtml(track, "carrierWave", "Bærebølge", { type: "select", options: waveOptions() })}
-      ${fieldHtml(track, "modWave", "Modulator-bølge", { type: "select", options: waveOptions() })}
-      ${fieldHtml(track, "freq", "Grundfrekvens (Hz)", { min: 20, max: 2000, step: 1, decimals: 0, suffix: " Hz" })}
+      ${fieldHtml(track, "carrierWave", "Carrier wave", { type: "select", options: waveOptions() })}
+      ${fieldHtml(track, "modWave", "Modulator wave", { type: "select", options: waveOptions() })}
+      ${fieldHtml(track, "freq", "Base frequency (Hz)", { min: 20, max: 2000, step: 1, decimals: 0, suffix: " Hz" })}
       ${freqNoteFieldHtml(track)}
       ${fieldHtml(track, "modRatio", "Mod. ratio", { min: 0.1, max: 8, step: 0.01, decimals: 2 })}
       ${fieldHtml(track, "modIndex", "Mod. index", { min: 0, max: 400, step: 1, decimals: 0 })}
       ${fieldHtml(track, "modIndexDecay", "Mod. index decay (s)", { min: 0, max: 1, step: 0.005, decimals: 3 })}
-      ${fieldHtml(track, "modIndexSustainRatio", "Mod. index sustain-andel", { min: 0, max: 1, step: 0.01, decimals: 2 })}
-      ${fieldHtml(track, "pitchEnvAmount", "Pitch-env mængde (Hz)", { min: -500, max: 500, step: 1, decimals: 0 })}
-      ${fieldHtml(track, "pitchEnvDecay", "Pitch-env decay (s)", { min: 0.005, max: 1, step: 0.005, decimals: 3 })}
+      ${fieldHtml(track, "modIndexSustainRatio", "Mod. index sustain ratio", { min: 0, max: 1, step: 0.01, decimals: 2 })}
+      ${fieldHtml(track, "pitchEnvAmount", "Pitch env amount (Hz)", { min: -500, max: 500, step: 1, decimals: 0 })}
+      ${fieldHtml(track, "pitchEnvDecay", "Pitch env decay (s)", { min: 0.005, max: 1, step: 0.005, decimals: 3 })}
       ${fieldHtml(track, "attack", "Attack (s)", { min: 0.001, max: 1, step: 0.001, decimals: 3 })}
       ${fieldHtml(track, "decay", "Decay (s)", { min: 0.001, max: 2, step: 0.001, decimals: 3 })}
       ${fieldHtml(track, "sustain", "Sustain", { min: 0, max: 1, step: 0.01, decimals: 2 })}
       ${fieldHtml(track, "release", "Release (s)", { min: 0.001, max: 2, step: 0.001, decimals: 3 })}
-      ${fieldHtml(track, "noiseLevel", "Støj-niveau", { min: 0, max: 1, step: 0.01, decimals: 2 })}
-      ${fieldHtml(track, "noiseFilterType", "Støjfilter-type", { type: "select", options: filterOptions() })}
-      ${fieldHtml(track, "noiseFilterFreq", "Støjfilter freq (Hz)", { min: 20, max: 15000, step: 10, decimals: 0, suffix: " Hz" })}
-      ${fieldHtml(track, "noiseFilterQ", "Støjfilter Q", { min: 0.1, max: 20, step: 0.1, decimals: 1 })}
-      ${fieldHtml(track, "pan", "Panorering", { min: -1, max: 1, step: 0.01, decimals: 2 })}
-      ${fieldHtml(track, "delaySteps", "Delay (skridt)", { min: 0, max: 8, step: 1, decimals: 0 })}
+      ${fieldHtml(track, "noiseLevel", "Noise level", { min: 0, max: 1, step: 0.01, decimals: 2 })}
+      ${fieldHtml(track, "noiseFilterType", "Noise filter type", { type: "select", options: filterOptions() })}
+      ${fieldHtml(track, "noiseFilterFreq", "Noise filter freq (Hz)", { min: 20, max: 15000, step: 10, decimals: 0, suffix: " Hz" })}
+      ${fieldHtml(track, "noiseFilterQ", "Noise filter Q", { min: 0.1, max: 20, step: 0.1, decimals: 1 })}
+      ${fieldHtml(track, "pan", "Panning", { min: -1, max: 1, step: 0.01, decimals: 2 })}
+      ${fieldHtml(track, "delaySteps", "Delay (steps)", { min: 0, max: 8, step: 1, decimals: 0 })}
       ${fieldHtml(track, "delayFeedback", "Delay feedback", { min: 0, max: 0.95, step: 0.01, decimals: 2 })}
       ${fieldHtml(track, "delayMix", "Delay mix", { min: 0, max: 1, step: 0.01, decimals: 2 })}
       ${fieldHtml(track, "reverbDecay", "Reverb decay (s)", { min: 0.2, max: 4, step: 0.05, decimals: 2 })}
       ${fieldHtml(track, "reverbMix", "Reverb mix", { min: 0, max: 1, step: 0.01, decimals: 2 })}
     </div>
     <div class="panel-actions">
-      <button data-action="preview" data-track="${track.id}">🔊 Test lyd</button>
+      <button data-action="preview" data-track="${track.id}">🔊 Test sound</button>
     </div>
   `;
 }
@@ -1316,7 +1316,7 @@ function trackHtml(track) {
     const style = step.on ? ` style="background:${preset.color}"` : "";
     const toneBadge = hasToneOverride ? `<span class="tone-badge">${step.override.semitones > 0 ? "+" : ""}${step.override.semitones}</span>` : "";
     const chordBadge = hasChordOverride ? `<span class="chord-override-badge" title="${escapeHtml((CHORD_TYPES[step.override.chordType] && CHORD_TYPES[step.override.chordType].label) || "")}">♫</span>` : "";
-    const title = step.on ? "Højreklik for at redigere tonen/akkorden/groove" : "Klik for at tænde trinnet";
+    const title = step.on ? "Right-click to edit note/chord/groove" : "Click to turn the step on";
     stepsHtml += `<button class="${classes.join(" ")}" data-action="step" data-track="${track.id}" data-step="${i}"${style} title="${title}">${toneBadge}${chordBadge}</button>`;
   }
   return `
@@ -1325,12 +1325,12 @@ function trackHtml(track) {
         <div class="row-header">
           <div class="track-color" style="background:${preset.color}"></div>
           <div class="track-index">${track.id + 1}</div>
-          <button class="track-name-btn" data-action="toggle-panel" data-track="${track.id}" title="Rediger FM-parametre">${track.chordMode ? '<span class="chord-indicator" title="Akkordmode">♫</span>' : ""}${escapeHtml(track.name)}</button>
+          <button class="track-name-btn" data-action="toggle-panel" data-track="${track.id}" title="Edit FM parameters">${track.chordMode ? '<span class="chord-indicator" title="Chord mode">♫</span>' : ""}${escapeHtml(track.name)}</button>
           <button class="mini-btn mute-btn ${track.mute ? "active" : ""}" data-action="mute" data-track="${track.id}" title="Mute">M</button>
           <button class="mini-btn solo-btn ${track.solo ? "active" : ""}" data-action="solo" data-track="${track.id}" title="Solo">S</button>
           <input class="vol-range" type="range" min="0" max="1" step="0.01" value="${track.volume}" data-action="volume" data-track="${track.id}" title="Lydstyrke">
-          <button class="mini-btn clear-track-btn" data-action="clear-track" data-track="${track.id}" title="Ryd dette spor (alle trin)">C</button>
-          <button class="mini-btn delete-btn" data-action="delete-track" data-track="${track.id}" title="Fjern spor">×</button>
+          <button class="mini-btn clear-track-btn" data-action="clear-track" data-track="${track.id}" title="Clear this track (all steps)">C</button>
+          <button class="mini-btn delete-btn" data-action="delete-track" data-track="${track.id}" title="Remove track">×</button>
         </div>
         <div class="steps">${stepsHtml}</div>
       </div>
@@ -1446,12 +1446,12 @@ function openToneEditor(buttonEl, trackIndex, stepIndex) {
     <div class="tone-popover-divider"></div>
     <div class="tone-popover-row">
       <select class="tone-chord-type">
-        <option value="" ${!stepChordType ? "selected" : ""}>Spor-standard (${CHORD_TYPES[track.chordType || "major"].label})</option>
+        <option value="" ${!stepChordType ? "selected" : ""}>Track default (${CHORD_TYPES[track.chordType || "major"].label})</option>
         ${chordTypeOptionsHtml(stepChordType)}
       </select>
     </div>
     <div class="tone-popover-row">
-      <input type="text" class="tone-chord-intervals" value="${effectiveIntervals.join(",")}" placeholder="fx 0,4,7" ${stepChordType ? "" : "disabled"}>
+      <input type="text" class="tone-chord-intervals" value="${effectiveIntervals.join(",")}" placeholder="e.g. 0,4,7" ${stepChordType ? "" : "disabled"}>
     </div>
   ` : "";
 
@@ -1460,11 +1460,11 @@ function openToneEditor(buttonEl, trackIndex, stepIndex) {
   const pop = document.createElement("div");
   pop.className = "tone-popover";
   pop.innerHTML = `
-    <div class="tone-popover-title">${escapeHtml(track.name)} · trin ${stepIndex + 1}</div>
+    <div class="tone-popover-title">${escapeHtml(track.name)} · step ${stepIndex + 1}</div>
     <div class="tone-popover-row tone-note-row">
       <select class="tone-note">${noteOptionsHtml(midiToNote(rootMidi + current).name)}</select>
       <input type="number" class="tone-octave" min="-1" max="9" step="1">
-      <span class="tone-note-hint">tone + oktav</span>
+      <span class="tone-note-hint">note + octave</span>
     </div>
     <div class="tone-popover-row">
       <input type="range" min="-24" max="24" step="1" value="${current}" class="tone-range">
@@ -1477,8 +1477,8 @@ function openToneEditor(buttonEl, trackIndex, stepIndex) {
     </div>
     <div class="tone-value tone-nudge-value"></div>
     <div class="tone-popover-actions">
-      <button type="button" class="tone-reset">Nulstil tone</button>
-      <button type="button" class="tone-close">Luk</button>
+      <button type="button" class="tone-reset">Reset note</button>
+      <button type="button" class="tone-close">Close</button>
     </div>
   `;
   document.body.appendChild(pop);
@@ -1523,7 +1523,7 @@ function openToneEditor(buttonEl, trackIndex, stepIndex) {
     noteSelect.value = note.name;
     octaveInput.value = note.octave;
     const freq = midiToFreq(rootMidi + semis);
-    valueEl.textContent = `${semis > 0 ? "+" : ""}${semis} halvtoner · ${note.name}${note.octave} (${freq.toFixed(1)} Hz)`;
+    valueEl.textContent = `${semis > 0 ? "+" : ""}${semis} semitones · ${note.name}${note.octave} (${freq.toFixed(1)} Hz)`;
   }
   function commitTone(rawSemis) {
     const semis = Math.max(-24, Math.min(24, Math.round(rawSemis)));
@@ -1567,7 +1567,7 @@ function openToneEditor(buttonEl, trackIndex, stepIndex) {
   // to add swing/groove without moving the note off the visible grid.
   function renderNudge(pct) {
     nudgeRange.value = pct;
-    const dir = pct === 0 ? "på gitteret" : pct < 0 ? "tidligere" : "senere";
+    const dir = pct === 0 ? "on the grid" : pct < 0 ? "earlier" : "later";
     nudgeValueEl.textContent = `Groove: ${pct > 0 ? "+" : ""}${pct}% (${dir})`;
   }
   function commitNudge(rawPct) {
@@ -1617,7 +1617,7 @@ tracksContainer.addEventListener("click", (e) => {
     const preset = PRESETS[track.preset] || PRESETS.custom;
     el.classList.toggle("on", step.on);
     el.style.background = step.on ? preset.color : "";
-    el.title = step.on ? "Højreklik for at redigere tonen/akkorden/groove" : "Klik for at tænde trinnet";
+    el.title = step.on ? "Right-click to edit note/chord/groove" : "Click to turn the step on";
     updateStepOverrideVisual(el, step);
     if (!step.on && toneEditor && toneEditor.trackIndex === trackIndex && toneEditor.stepIndex === stepIndex) {
       closeToneEditor();
@@ -1638,17 +1638,17 @@ tracksContainer.addEventListener("click", (e) => {
     previewTrack(track);
   } else if (action === "delete-track") {
     if (state.tracks.length <= 1) return; // always keep at least one track
-    if (!confirm(`Fjern sporet "${track.name}"?`)) return;
+    if (!confirm(`Remove the track "${track.name}"?`)) return;
     state.tracks.splice(trackIndex, 1);
     state.tracks.forEach((t, i) => { t.id = i; });
     if (openTrackId === trackIndex) openTrackId = null;
     else if (openTrackId !== null && openTrackId > trackIndex) openTrackId -= 1;
     renderAll();
-    statusText.textContent = `${state.tracks.length} spor × ${state.patternLength} skridt`;
+    statusText.textContent = `${state.tracks.length} tracks × ${state.patternLength} steps`;
     scheduleSave();
   } else if (action === "clear-track") {
     if (!track.steps.some((s) => s.on)) return; // nothing to clear
-    if (!confirm(`Ryd alle trin i "${track.name}"?`)) return;
+    if (!confirm(`Clear all steps in "${track.name}"?`)) return;
     for (const step of track.steps) {
       step.on = false;
       step.override = null;
@@ -1673,8 +1673,8 @@ tracksContainer.addEventListener("input", (e) => {
     track.name = el.value;
     const btn = tracksContainer.querySelector(`.track-name-btn[data-track="${trackIndex}"]`);
     if (btn) {
-      const chordBadge = track.chordMode ? '<span class="chord-indicator" title="Akkordmode">♫</span>' : "";
-      btn.innerHTML = chordBadge + escapeHtml(track.name || `Spor ${trackIndex + 1}`);
+      const chordBadge = track.chordMode ? '<span class="chord-indicator" title="Chord mode">♫</span>' : "";
+      btn.innerHTML = chordBadge + escapeHtml(track.name || `Track ${trackIndex + 1}`);
     }
     scheduleSave();
   } else if (action === "preset") {
@@ -1801,7 +1801,7 @@ lengthSelect.addEventListener("change", () => {
   currentStep = 0;
   setPlayheadColumn(-1);
   renderAll();
-  statusText.textContent = `${state.tracks.length} spor × ${state.patternLength} skridt`;
+  statusText.textContent = `${state.tracks.length} tracks × ${state.patternLength} steps`;
   scheduleSave();
 });
 
@@ -1817,7 +1817,7 @@ addTrackBtn.addEventListener("click", () => {
   state.tracks.push(makeTrack(index));
   openTrackId = index; // jump straight to the new track's panel so it's ready to configure
   renderAll();
-  statusText.textContent = `${state.tracks.length} spor × ${state.patternLength} skridt`;
+  statusText.textContent = `${state.tracks.length} tracks × ${state.patternLength} steps`;
   scheduleSave();
 });
 
@@ -1827,7 +1827,7 @@ midiFileInput.addEventListener("change", async () => {
   const file = midiFileInput.files[0];
   midiFileInput.value = ""; // reset so picking the same file again still fires "change"
   if (!file) return;
-  if (!confirm(`Importér "${file.name}"? Dette erstatter alle nuværende spor og mønsteret.`)) return;
+  if (!confirm(`Import "${file.name}"? This replaces all current tracks and the pattern.`)) return;
   try {
     const buffer = await file.arrayBuffer();
     const midi = parseMidi(buffer);
@@ -1837,14 +1837,14 @@ midiFileInput.addEventListener("change", async () => {
     console.log(`[MIDI import] stepCount=${stepCount} truncated=${truncated} sequencer tracks=${tracks.length}`);
     tracks.forEach((t) => console.log(`  "${t.name}" preset=${t.preset} onSteps=${t.steps.filter((s) => s.on).length}/${t.steps.length}`));
     if (!tracks.length) {
-      alert("Fandt ingen brugbare noder i MIDI-filen. Åbn browserens konsol (F12) for detaljer.");
+      alert("No usable notes found in the MIDI file. Open the browser console (F12) for details.");
       return;
     }
     const totalCells = stepCount * tracks.length;
     if (totalCells > 5000) {
       const proceed = confirm(
-        `Denne fil bliver til ${tracks.length} spor × ${stepCount} skridt (${totalCells.toLocaleString("da-DK")} felter i alt) — ` +
-        `det er en meget stor sequencer-grid og kan gøre siden langsom at rulle/interagere med. Fortsæt alligevel?`
+        `This file becomes ${tracks.length} tracks × ${stepCount} steps (${totalCells.toLocaleString("en-US")} cells in total) — ` +
+        `that is a very large sequencer grid and may make the page slow to scroll and interact with. Continue anyway?`
       );
       if (!proceed) return;
     }
@@ -1857,17 +1857,17 @@ midiFileInput.addEventListener("change", async () => {
     state.tracks = tracks;
     openTrackId = null;
     renderAll();
-    statusText.textContent = `${state.tracks.length} spor × ${state.patternLength} skridt — importeret fra ${file.name}` +
-      (truncated ? ` (afkortet til ${MAX_IMPORT_STEPS} skridt — filen er usædvanligt lang)` : "");
+    statusText.textContent = `${state.tracks.length} tracks × ${state.patternLength} steps — imported from ${file.name}` +
+      (truncated ? ` (truncated to ${MAX_IMPORT_STEPS} steps — the file is unusually long)` : "");
     scheduleSave();
   } catch (err) {
     console.error(err);
-    alert("Kunne ikke læse MIDI-filen: " + err.message);
+    alert("Could not read the MIDI file: " + err.message);
   }
 });
 
 clearBtn.addEventListener("click", () => {
-  if (!confirm("Ryd hele mønsteret (alle spor)?")) return;
+  if (!confirm("Clear the whole pattern (all tracks)?")) return;
   for (const track of state.tracks) {
     for (const step of track.steps) step.on = false;
   }
@@ -1876,7 +1876,7 @@ clearBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-  if (!confirm("Nulstil alt til standardopsætning? Dette kan ikke fortrydes.")) return;
+  if (!confirm("Reset everything to the default setup? This cannot be undone.")) return;
   localStorage.removeItem(STORAGE_KEY);
   STEP_COUNT = 64; // undo any growth from a previous MIDI import
   PATTERN_LENGTHS = [16, 32, 64];
@@ -1885,7 +1885,7 @@ resetBtn.addEventListener("click", () => {
   currentStep = 0;
   stop();
   renderAll();
-  statusText.textContent = `${state.tracks.length} spor × ${state.patternLength} skridt`;
+  statusText.textContent = `${state.tracks.length} tracks × ${state.patternLength} steps`;
 });
 
 window.addEventListener("beforeunload", () => {
@@ -1897,4 +1897,4 @@ window.addEventListener("beforeunload", () => {
 // ---------------------------------------------------------------------
 
 renderAll();
-statusText.textContent = `${state.tracks.length} spor × ${state.patternLength} skridt`;
+statusText.textContent = `${state.tracks.length} tracks × ${state.patternLength} steps`;
